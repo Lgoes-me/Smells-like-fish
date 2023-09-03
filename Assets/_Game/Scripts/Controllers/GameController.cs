@@ -13,7 +13,6 @@ public class GameController : MonoBehaviour
     [field: SerializeField] private ScrollManager Scroll { get; set; }
     [field: SerializeField] private ScoreController Score { get; set; }
     
-    
     private BaseGameplayState State { get; set; }
     private Dictionary<Type,BaseGameplayState> States { get; set; }
     
@@ -31,15 +30,15 @@ public class GameController : MonoBehaviour
     
     private void Start()
     {
-        var scroll = Scroll.Init();
+        Scroll.Init();
         
         States = new List<BaseGameplayState>()
         {
             new MainMenuState(MainMenu.Init()),
             new StoreState(Store.Init()),
             new CollectionState(Collection.Init()),
-            new FishingState(scroll),
-            new CaughtFishState(scroll),
+            new FishingState(Scroll),
+            new CaughtFishState(Scroll),
             new ScoreState(Score.Init()),
             new EndGameState(),
         }.ToDictionary(s => s.GetType(), s=> s);

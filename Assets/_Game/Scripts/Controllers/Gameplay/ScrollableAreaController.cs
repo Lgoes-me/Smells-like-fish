@@ -45,7 +45,7 @@ public class ScrollableAreaController : MonoBehaviour
                 transform).Init();
             
             SubscribeScrollable(enemyGroup);
-            yield return new WaitForSeconds(Random.Range(1, 4f));
+            yield return new WaitForSeconds(Random.Range(1, 2.5f));
         }
     }
 

@@ -16,6 +16,7 @@ public class ScrollManager : MonoBehaviour
     private List<IScrollable> Scrollables { get; set; }
     
     private int CurrentDepth { get; set; }
+    private bool Scrolling { get; set; }
 
     public ScrollManager Init()
     {
@@ -33,6 +34,8 @@ public class ScrollManager : MonoBehaviour
         {
             ScrollableArea.Show();
             Depth.Show();
+
+            Scrolling = true;
         });
     }
 
@@ -63,6 +66,9 @@ public class ScrollManager : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if(!Scrolling)
+            return;
+        
         CurrentDepth += ScrollSpeed;
         
         var percent = CurrentDepth / 10000f;
@@ -70,9 +76,10 @@ public class ScrollManager : MonoBehaviour
         
         Depth.UpdateTextAndColor(CurrentDepth, GradientColor.Evaluate(1 - percent));
         
-        if (CurrentDepth < -1)
+        if (CurrentDepth <= 0)
         {
             ScrollableArea.GetToSurface();
+            Scrolling = false;
         }
     }
 }
