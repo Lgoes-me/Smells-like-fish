@@ -6,10 +6,11 @@ public class ScoreController : MonoBehaviour
 {
     [field: SerializeField] private Button ContinueButton { get; set; }
 
-    private void Awake()
+    public ScoreController Init()
     {
-        ContinueButton.onClick.AddListener(() => GameController.Game.ChangeState(new EndGameState()));
+        ContinueButton.onClick.AddListener(() => GameController.Game.ChangeState<EndGameState>());
         gameObject.SetActive(false);
+        return this;
     }
 
     public void Show()

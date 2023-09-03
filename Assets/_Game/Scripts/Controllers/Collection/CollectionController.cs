@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class CollectionController: MonoBehaviour
 {
-    private void Awake()
+    [field: SerializeField] private Button CloseButton { get; set; }
+    
+    public CollectionController Init()
     {
+        CloseButton.onClick.AddListener(() => GameController.Game.ChangeState<MainMenuState>());
         gameObject.SetActive(false);
+
+        return this;
     }
 
     public void Show()

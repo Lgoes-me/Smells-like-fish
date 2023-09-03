@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class StoreController : MonoBehaviour
 {
-    private void Awake()
+    [field: SerializeField] private Button CloseButton { get; set; }
+    
+    public StoreController Init()
     {
+        CloseButton.onClick.AddListener(() => GameController.Game.ChangeState<MainMenuState>());
         gameObject.SetActive(false);
+        return this;
     }
 
     public void Show()

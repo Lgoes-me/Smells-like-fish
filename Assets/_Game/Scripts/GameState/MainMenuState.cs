@@ -1,8 +1,8 @@
-﻿public class StartMenuState : BaseGameplayState
+﻿public class MainMenuState : BaseGameplayState
 {
     private MainMenuController MainMenu { get; }
 
-    public StartMenuState(MainMenuController mainMenu)
+    public MainMenuState(MainMenuController mainMenu)
     {
         MainMenu = mainMenu;
     }

@@ -1,17 +1,15 @@
 ﻿public class FishingState : BaseGameplayState
 {
-    private ScrollableAreaController ScrollableArea { get; }
+    private ScrollManager Scroll { get; }
 
-    public FishingState(ScrollableAreaController scrollableArea)
+    public FishingState(ScrollManager scroll)
     {
-        ScrollableArea = scrollableArea;
+        Scroll = scroll;
     }
 
     public override void OnStateEnter()
     {
-        ScrollableArea.Show();
-        ScrollableArea.ScrollSpeed = 3;
-        ScrollableArea.UpdateScrollSpeed();
-        ScrollableArea.SpawnEnemies();
+        Scroll.Show();
+        Scroll.UpdateScrollSpeed(3);
     }
 }

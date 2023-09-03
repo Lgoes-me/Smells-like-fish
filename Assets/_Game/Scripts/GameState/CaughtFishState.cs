@@ -1,23 +1,20 @@
 ﻿public class CaughtFishState : BaseGameplayState
 {
-    private ScrollableAreaController ScrollableArea { get; }
+    private ScrollManager Scroll { get; }
 
-    public CaughtFishState(ScrollableAreaController scrollableArea)
+    public CaughtFishState(ScrollManager scroll)
     {
-        ScrollableArea = scrollableArea;
+        Scroll = scroll;
     }
     
     public override void OnStateEnter()
     {
-        ScrollableArea.StopSpawn();
-        ScrollableArea.ScrollSpeed = -8;
-        ScrollableArea.UpdateScrollSpeed();
+        Scroll.UpdateScrollSpeed(-8);
     }
     
     public override void OnStateExit()
     {
-        ScrollableArea.ScrollSpeed = 0;
-        ScrollableArea.UpdateScrollSpeed();
-        ScrollableArea.Hide();
+        Scroll.UpdateScrollSpeed(0);
+        Scroll.Hide();
     }
 }
