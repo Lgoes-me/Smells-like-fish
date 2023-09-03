@@ -6,13 +6,16 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public static GameController Game { get; private set; }
+    public Managers Managers { get; private set; }
+    
+    [field: SerializeField] private Managers ManagersPrefab { get; set; }
     
     [field: SerializeField] private MainMenuController MainMenu { get; set; }
     [field: SerializeField] private StoreController Store { get; set; }
     [field: SerializeField] private CollectionController Collection { get; set; }
     [field: SerializeField] private ScrollManager Scroll { get; set; }
     [field: SerializeField] private ScoreController Score { get; set; }
-    
+
     private BaseGameplayState State { get; set; }
     private Dictionary<Type,BaseGameplayState> States { get; set; }
     
@@ -25,7 +28,14 @@ public class GameController : MonoBehaviour
         else 
         { 
             Game = this; 
-        } 
+        }
+
+        Managers = FindObjectOfType<Managers>();
+        
+        if (!Managers)
+        {
+            Managers = Instantiate(ManagersPrefab).Init();
+        }
     }
     
     private void Start()

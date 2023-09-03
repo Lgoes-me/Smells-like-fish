@@ -14,6 +14,7 @@
     
     public override void OnStateExit()
     {
+        GameController.Game.Managers.ScoreManager.ResetCurrentScore();
         Score.Hide();
     }
 }
