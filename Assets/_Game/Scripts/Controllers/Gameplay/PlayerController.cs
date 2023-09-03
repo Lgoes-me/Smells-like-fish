@@ -68,11 +68,11 @@ public class PlayerController : MonoBehaviour, IScrollable
             if (Enemies.Count == 0)
             {
                 ScrollableArea.OnFishCaught();
-                GameController.Game.Managers.ScoreManager.AddCurrentScore(enemy.MainScore);
+                GameController.Game.Application.ScoreService.AddCurrentScore(enemy.MainScore);
             }
             else
             {
-                GameController.Game.Managers.ScoreManager.AddCurrentScore(enemy.SecondaryScore);
+                GameController.Game.Application.ScoreService.AddCurrentScore(enemy.SecondaryScore);
             }
 
             enemy.transform.parent = transform;

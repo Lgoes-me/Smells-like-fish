@@ -16,7 +16,7 @@ public class StoreController : MonoBehaviour
 
     public void Show()
     {
-        ScoreText.SetText($"{GameController.Game.Managers.ScoreManager.TotalScore}");
+        ScoreText.SetText($"{GameController.Game.Application.ScoreService.TotalScore}");
         gameObject.SetActive(true);
     }
 

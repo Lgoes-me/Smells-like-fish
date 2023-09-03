@@ -6,10 +6,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public static GameController Game { get; private set; }
-    public Managers Managers { get; private set; }
-    
-    [field: SerializeField] private Managers ManagersPrefab { get; set; }
-    
+    public Application Application { get; private set; }
+
     [field: SerializeField] private MainMenuController MainMenu { get; set; }
     [field: SerializeField] private StoreController Store { get; set; }
     [field: SerializeField] private CollectionController Collection { get; set; }
@@ -17,31 +15,28 @@ public class GameController : MonoBehaviour
     [field: SerializeField] private ScoreController Score { get; set; }
 
     private BaseGameplayState State { get; set; }
-    private Dictionary<Type,BaseGameplayState> States { get; set; }
-    
-    private void Awake() 
-    { 
-        if (Game != null && Game != this) 
-        { 
-            Destroy(this); 
-        } 
-        else 
-        { 
-            Game = this; 
+    private Dictionary<Type, BaseGameplayState> States { get; set; }
+
+    private void Awake()
+    {
+        if (Game != null && Game != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Game = this;
         }
 
-        Managers = FindObjectOfType<Managers>();
-        
-        if (!Managers)
-        {
-            Managers = Instantiate(ManagersPrefab).Init();
-        }
+        Application = 
+            FindObjectOfType<Application>() ??
+            new GameObject("Application").AddComponent<Application>().Init();
     }
-    
+
     private void Start()
     {
         Scroll.Init();
-        
+
         States = new List<BaseGameplayState>()
         {
             new MainMenuState(MainMenu.Init()),
@@ -51,7 +46,7 @@ public class GameController : MonoBehaviour
             new CaughtFishState(Scroll),
             new ScoreState(Score.Init()),
             new EndGameState(),
-        }.ToDictionary(s => s.GetType(), s=> s);
+        }.ToDictionary(s => s.GetType(), s => s);
 
         State = States[typeof(MainMenuState)];
         State.OnStateEnter();
@@ -60,7 +55,7 @@ public class GameController : MonoBehaviour
     public void ChangeState<T>() where T : BaseGameplayState
     {
         var nextState = States[typeof(T)];
-        
+
         State.OnStateExit();
         State = nextState;
         State.OnStateEnter();

@@ -1,4 +1,4 @@
-﻿public class ScoreManager
+﻿public class ScoreService
 {
     public int CurrentGameScore { get; private set; }
     public int TotalScore { get; private set; }

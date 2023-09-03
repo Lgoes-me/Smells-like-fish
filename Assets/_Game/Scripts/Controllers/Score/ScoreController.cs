@@ -17,7 +17,7 @@ public class ScoreController : MonoBehaviour
 
     public void Show()
     {
-        ScoreText.SetText($"{GameController.Game.Managers.ScoreManager.CurrentGameScore}");
+        ScoreText.SetText($"{GameController.Game.Application.ScoreService.CurrentGameScore}");
         gameObject.SetActive(true);
     }
 

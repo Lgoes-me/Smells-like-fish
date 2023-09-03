@@ -1915,7 +1915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44df6b92d09640e39a7d09852894f171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ManagersPrefab>k__BackingField: {fileID: 7803329351810192076, guid: c46eb17d96cc2e04989fc51576427164, type: 3}
+  <ApplicationPrefab>k__BackingField: {fileID: 7803329351810192076, guid: c46eb17d96cc2e04989fc51576427164, type: 3}
   <MainMenu>k__BackingField: {fileID: 1780447855}
   <Store>k__BackingField: {fileID: 1113106876}
   <Collection>k__BackingField: {fileID: 590863291}
